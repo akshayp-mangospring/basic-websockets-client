@@ -13,7 +13,7 @@ function App() {
   useEffect(() => {
     fetchData().then(({ content }) => {
       setContent(content);
-    })
+    });
   }, []);
 
   return (
