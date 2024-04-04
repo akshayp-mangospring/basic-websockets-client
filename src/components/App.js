@@ -1,10 +1,24 @@
-import "../stylesheets/App.sass";
+import { useEffect, useState } from "react";
+import "@styles/App.sass";
+import { backendUrl } from '@constants';
 
 function App() {
+  const [content, setContent] = useState('');
+
+  const fetchData = async () => {
+    const res = await fetch(backendUrl);
+    return await res.json();
+  };
+
+  useEffect(() => {
+    fetchData().then(({ content }) => {
+      setContent(content);
+    })
+  }, []);
+
   return (
     <div className="container">
-      <h1>Hello, World!</h1>
-      <h1>This is gonna be a basic Chat App</h1>
+      <h1>{content}</h1>
     </div>
   );
 }
