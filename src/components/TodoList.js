@@ -1,8 +1,9 @@
 import { useEffect, useState } from "react";
 import { backendUrl } from '@constants';
 import { isEnterKeyPressed } from '@utils';
-import { getData, postData } from '@rest_utils';
+import { getData, deleteData, postData } from '@rest_utils';
 import Todo from "@components/Todo";
+import Trash from '@icons/Trash';
 
 function TodoList({ todoList: { id, title } }) {
   const todoListDomId = `todo_list_${id}`;
@@ -30,10 +31,18 @@ function TodoList({ todoList: { id, title } }) {
     }
   };
 
+  const deleteList = (e) => {
+    e.stopPropagation();
+    deleteData(
+      `${backendUrl}/todolists/${id}`
+    ).then(() => {
+    });
+  };
+
   return (
     <div className="col col-xs-12 col-sm-12 col-md-6 col-lg-4 accordion">
       <div className="accordion-item">
-        <h2 className="accordion-header" onClick={() => setIsCollapsed(!isCollapsed)}>
+        <h2 className="accordion-header position-relative" onClick={() => setIsCollapsed(!isCollapsed)}>
           <button
             className={`accordion-button ${isCollapsed ? 'collapsed' : ''}`}
             type="button"
@@ -44,11 +53,17 @@ function TodoList({ todoList: { id, title } }) {
           >
             {title}
           </button>
+          <span role="button"
+            className="align-items-center position-absolute delete-todo-list"
+            onClick={deleteList}
+          >
+            <Trash />
+          </span>
         </h2>
         <div id={todoListDomId} className={`accordion-collapse collapse ${isCollapsed ? '' : 'show'}`}>
           <div className="accordion-body">
             {todos.length ? (
-              <ul className="list-unstyled">
+              <ul className="list-group mb-2">
                 {todos.map((todo) => <Todo key={todo.id} todo={todo} />)}
               </ul>
             ) : null}

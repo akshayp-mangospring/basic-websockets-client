@@ -43,7 +43,7 @@ function Todo({ todo: { id, name, completed } }) {
   };
 
   return (
-    <li className="d-flex align-items-center mb-1 todo-list-item">
+    <li className="d-flex align-items-center list-group-item todo-list-item">
       {
         isEditing ? (
           <>
