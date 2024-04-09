@@ -1,0 +1,10 @@
+Redux is used for complex React App's centralized state management.
+
+Why to use Redux Toolkit?
+  The Redux website now itself recommends the usage of Redux Toolkit in it's own docs.
+  Redux toolkit is an improvisation to Redux. It's much more organised, cleaner.
+  It also has support for immutability out of the box, it uses `immer.js` for handling of immutable state.
+  It also has got support for Redux middleware out of the box. So, we don't need to add `redux-thunk` separately. It has got `createAsyncThunk` in it.
+  The newer version has got very less boilerplate code involved in it.
+  The most fun fact is that it now supports the usage of Hooks just like ReactJS.
+  So, we must now move on from Redux to Redux Toolkit.
