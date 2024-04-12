@@ -1,8 +1,10 @@
+import { Link } from "react-router-dom";
+
 function LoggedInTopNav() {
   return (
     <nav className="navbar navbar-expand-lg bg-body-tertiary">
       <div className="container-fluid">
-        <a className="navbar-brand" href="/">Home</a>
+        <Link className="navbar-brand" to="/">Home</Link>
         <button
           className="navbar-toggler"
           type="button"
@@ -17,13 +19,13 @@ function LoggedInTopNav() {
         <div className="collapse navbar-collapse" id="navbarSupportedContent">
           <ul className="navbar-nav me-auto mb-2 mb-lg-0">
             <li className="nav-item">
-              <a className="nav-link" href="/">To dos</a>
+              <Link className="nav-link" to="/">To dos</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/fakestore">FakeStore</a>
+              <Link className="nav-link" to="/fakestore">FakeStore</Link>
             </li>
             <li className="nav-item">
-              <a className="nav-link" href="/fakestore/cart">Cart</a>
+              <Link className="nav-link" to="/fakestore/cart">Cart</Link>
             </li>
           </ul>
         </div>
