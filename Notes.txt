@@ -8,3 +8,7 @@ Why to use Redux Toolkit?
   The newer version has got very less boilerplate code involved in it.
   The most fun fact is that it now supports the usage of Hooks just like ReactJS.
   So, we must now move on from Redux to Redux Toolkit.
+
+Rule of Thumb:
+Everything should be in Routing, even the Redux Toolkit Provider must also be in RouterProvider itself.
+Router should be the root component for all the other components.

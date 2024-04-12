@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { backendUrl } from '@constants';
 import { isEnterKeyPressed } from '@utils';
 import { getData, deleteData, postData } from '@rest_utils';
-import Todo from "@components/Todo";
+import Todo from "@components/todo/Todo";
 import Trash from '@icons/Trash';
 
 function TodoList({ todoList: { id, title } }) {

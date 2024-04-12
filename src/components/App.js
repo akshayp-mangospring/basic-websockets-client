@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import "@styles/App.sass";
 import { backendUrl } from '@constants';
 import { getData, postData } from '@rest_utils';
-import TodoList from '@components/TodoList';
+import TodoList from '@components/todo/TodoList';
 
 function App() {
   const [todoLists, setTodoLists] = useState([]);

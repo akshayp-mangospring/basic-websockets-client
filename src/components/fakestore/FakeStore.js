@@ -21,8 +21,8 @@ function FakeStore() {
       <div className="container">
         <ul className="list-unstyled row d-flex flex-wrap g-3">
           {products.map((product) => (
-            <div className="col col-xs-12 col-sm-12 col-md-6 col-lg-4">
-              <Product key={product.id} product={product} />
+            <div key={product.id} className="col col-xs-12 col-sm-12 col-md-6 col-lg-4">
+              <Product product={product} />
             </div>
           ))}
         </ul>
