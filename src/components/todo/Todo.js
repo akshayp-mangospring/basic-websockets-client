@@ -6,7 +6,7 @@ import Trash from '@icons/Trash';
 import Edit from '@icons/Edit';
 import BackArrow from '@icons/BackArrow';
 
-function Todo({ todo: { id, name, completed } }) {
+function Todo({ todo: { id, name, completed }, todos, setTodos }) {
   const [isEditing, setIsEditing] = useState(false);
   const [tempValue, setTempValue] = useState(name);
   const [todoVal, setTodoVal] = useState(name);
@@ -30,6 +30,7 @@ function Todo({ todo: { id, name, completed } }) {
       `${backendUrl}/todos/${id}`
     ).then(() => {
       setIsEditing(false);
+      setTodos(todos.filter(({ id: todoId }) => todoId !== id));
     });
   };
 

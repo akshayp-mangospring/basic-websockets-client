@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import { backendUrl } from '@constants';
 import { isEnterKeyPressed } from '@utils';
-import { getData, deleteData, postData } from '@rest_utils';
+import { getData, postData } from '@rest_utils';
 import Todo from "@components/todo/Todo";
 import Trash from '@icons/Trash';
+import { deleteTodoList } from "@store/todoListSlice";
 
 function TodoList({ todoList: { id, title } }) {
   const todoListDomId = `todo_list_${id}`;
+  const dispatch = useDispatch();
   const [todos, setTodos] = useState([]);
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [inputValue, setInputValue] = useState('');
@@ -31,12 +34,9 @@ function TodoList({ todoList: { id, title } }) {
     }
   };
 
-  const deleteList = (e) => {
+  const deleteList = async (e) => {
     e.stopPropagation();
-    deleteData(
-      `${backendUrl}/todolists/${id}`
-    ).then(() => {
-    });
+    await dispatch(deleteTodoList(id));
   };
 
   return (
@@ -64,7 +64,7 @@ function TodoList({ todoList: { id, title } }) {
           <div className="accordion-body">
             {todos.length ? (
               <ul className="list-group mb-2">
-                {todos.map((todo) => <Todo key={todo.id} todo={todo} />)}
+                {todos.map((todo) => <Todo key={todo.id} todo={todo} todos={todos} setTodos={setTodos} />)}
               </ul>
             ) : null}
             <input

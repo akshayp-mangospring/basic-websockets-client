@@ -10,22 +10,24 @@ const initialState = {
 const productSlice = createSlice({
   name: 'products',
   initialState,
-  reducers: {
-  },
+  reducers: { },
   extraReducers: (builder) => {
+    // Thunk Reducers
     builder.addCase(getProducts.fulfilled, (state, action) => {
       state.data = action.payload;
     });
   },
 });
 
-// Here we have to explicitly export the actions and the reducers as well.
-export const {  } = productSlice.actions;
-export default productSlice.reducer;
+// Thunk Actions
 
 export const getProducts = createAsyncThunk('products/get', async () => {
   const data = await fetch('https://fakestoreapi.com/products');
   const result = await data.json();
 
   return result;
-})
+});
+
+// Here we have to explicitly export the actions and the reducers as well.
+// export const { } = productSlice.actions;
+export default productSlice.reducer;

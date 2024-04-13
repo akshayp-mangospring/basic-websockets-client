@@ -15,7 +15,7 @@ function FakeStore() {
     } catch (error) {
       console.error(error);
     }
-  }, []);
+  }, [products, dispatch]);
 
   return (
     <>

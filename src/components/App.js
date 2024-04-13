@@ -1,32 +1,26 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "@styles/App.sass";
-import { backendUrl } from '@constants';
-import { getData, postData } from '@rest_utils';
+import { getTodoLists, addTodoList, } from "@store/todoListSlice";
+import { isBlank } from '@utils';
 import TodoList from '@components/todo/TodoList';
 
 function App() {
-  const [todoLists, setTodoLists] = useState([]);
+  const dispatch = useDispatch();
+  const { todoLists } = useSelector(({ todoLists }) => todoLists);
   const [inputValue, setInputValue] = useState([]);
 
   useEffect(() => {
-    // Get All Todo Lists
-    getData(
-      `${backendUrl}/todolists`
-    ).then((res) => {
-      setTodoLists(res);
-    });
-  }, []);
+    dispatch(getTodoLists());
+  }, [dispatch]);
 
   // Create a Todo list
-  const createTodoList = (e) => {
+  const createTodoList = async (e) => {
     e.preventDefault();
-    postData(
-      `${backendUrl}/todolists`,
-      { title: e.target['todo-list-item'].value }
-    ).then((res) => {
-      setTodoLists([...todoLists, res])
-      setInputValue('');
-    });
+    const inputValue = e.target['todo-list-item'].value.trim();
+    if (isBlank(inputValue)) return;
+    await dispatch(addTodoList(inputValue));
+    setInputValue('');
   };
 
   return (
