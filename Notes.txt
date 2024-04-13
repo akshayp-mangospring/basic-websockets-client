@@ -36,3 +36,17 @@ Now we're gonna use the `react-redux` binding for it.
 We're gonna add `Provider` to the Root Component. But it needs to be outside of the Routing.
 So, we're gonna add it to the Layout components of our App.
 Through `Provider` we add our Redux state to our App.
+
+With Redux state, we ideally do two things:
+Consume the state from Redux store.
+Update the Redux state on the basis of some action that we are gonna take in our component.
+
+React Redux Hooks:
+React Redux now offers a set of Hooks as an alternative to the existing `connect` Higher Order Component(HOC).
+These hooks allow you to connect to the Redux store and dispatch actions without having to wrap your components in `connect` function.
+The most important hooks in React Redux:
+  useSelector - Equivalent to mapStateToProps
+    It takes a function argument that returns the part of the state which you want.
+
+  useDispatch - Equivalent to mapDispatchToProps
+    This hook returns the reference to the dispatch function from the Redux store.

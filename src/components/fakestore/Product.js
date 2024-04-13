@@ -1,4 +1,14 @@
-function Product({ product: { id, title, description, image, price, category } }) {
+import { useDispatch } from "react-redux";
+import { add } from "@store/cartSlice";
+
+function Product({ product }) {
+  const { id, title, description, image, price, category } = product;
+  const dispatch = useDispatch();
+
+  const addToCart = (product) => {
+    dispatch(add(product));
+  };
+
   return (
     <div className="card">
       <img src={image} className="card-img-top" alt={category} />
@@ -8,7 +18,11 @@ function Product({ product: { id, title, description, image, price, category } }
         <p className="card-text">{description.substring(0, 100)}...</p>
       </div>
       <div className="card-footer bg-transparent text-center">
-        <button type="button" className="btn btn-primary">Add to Cart</button>
+        <button
+          type="button"
+          className="btn btn-primary"
+          onClick={() => addToCart(product)}
+        >Add to Cart</button>
       </div>
     </div>
   );
