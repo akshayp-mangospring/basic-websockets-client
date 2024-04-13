@@ -1,24 +1,45 @@
 import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import "@styles/App.sass";
-import { backendUrl } from '@constants';
+import { getTodoLists, addTodoList, } from "@store/todoListSlice";
+import { isBlank } from '@utils';
+import TodoList from '@components/todo/TodoList';
 
 function App() {
-  const [content, setContent] = useState('');
-
-  const fetchData = async () => {
-    const res = await fetch(backendUrl);
-    return await res.json();
-  };
+  const dispatch = useDispatch();
+  const { todoLists } = useSelector(({ todoLists }) => todoLists);
+  const [inputValue, setInputValue] = useState([]);
 
   useEffect(() => {
-    fetchData().then(({ content }) => {
-      setContent(content);
-    });
-  }, []);
+    dispatch(getTodoLists());
+  }, [dispatch]);
+
+  // Create a Todo list
+  const createTodoList = async (e) => {
+    e.preventDefault();
+    const inputValue = e.target['todo-list-item'].value.trim();
+    if (isBlank(inputValue)) return;
+    await dispatch(addTodoList(inputValue));
+    setInputValue('');
+  };
 
   return (
     <div className="container">
-      <h1>{content}</h1>
+      <h1 className="text-center my-5">My To Dos</h1>
+      <form className="d-flex mb-3" onSubmit={createTodoList}>
+        <input
+          type="text"
+          className="form-control rounded-end-0"
+          name="todo-list-item"
+          placeholder="Add a To Do List"
+          onChange={(e) => setInputValue(e.target.value)}
+          value={inputValue}
+        />
+        <button type="submit" className="btn btn-primary rounded-start-0">Submit</button>
+      </form>
+      <div className="row d-flex flex-wrap g-3">
+        {todoLists.map((list) => <TodoList key={list.id} todoList={list} />)}
+      </div>
     </div>
   );
 }
