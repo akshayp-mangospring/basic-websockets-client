@@ -1,12 +1,16 @@
 import { useDispatch } from "react-redux";
-import { add } from "@store/cartSlice";
+import { add, remove } from "@store/cartSlice";
 
-function Product({ product }) {
-  const { id, title, description, image, price, category } = product;
+function Product({ product, isFromCart }) {
+  const { title, description, image, price, category } = product;
   const dispatch = useDispatch();
 
   const addToCart = (product) => {
     dispatch(add(product));
+  };
+
+  const removeFromCart = ({ id }) => {
+    dispatch(remove(id));
   };
 
   return (
@@ -18,11 +22,21 @@ function Product({ product }) {
         <p className="card-text">{description.substring(0, 100)}...</p>
       </div>
       <div className="card-footer bg-transparent text-center">
-        <button
-          type="button"
-          className="btn btn-primary"
-          onClick={() => addToCart(product)}
-        >Add to Cart</button>
+        {
+          isFromCart ? (
+            <button
+              type="button"
+              className="btn btn-danger"
+              onClick={() => removeFromCart(product)}
+            >Remove</button>
+          ) : (
+            <button
+              type="button"
+              className="btn btn-primary"
+              onClick={() => addToCart(product)}
+            >Add to Cart</button>
+          )
+        }
       </div>
     </div>
   );
