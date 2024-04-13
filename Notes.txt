@@ -50,3 +50,13 @@ The most important hooks in React Redux:
 
   useDispatch - Equivalent to mapDispatchToProps
     This hook returns the reference to the dispatch function from the Redux store.
+
+Redux Thunk:
+API calls must not be at the component level, instead they should also be from Redux. We should use Redux Thunk for it.
+Redux is designed for Synchronous behavior, it standalone doesn't know how to handle any asynchronous logic.
+Thus to achieve the goal of any Asynchronous operation in Redux there we use the middleware like Redux Thunk.
+But Redux Toolkit offers the `createAsyncThunk` out of the box which performs the same operation like Redux Thunk.
+It's sole motto is to remove API calls from React Components and move them to Redux.
+
+The Rule of thumb is to hold data from API calls into a Separate Slice, in this way we can preserve the original data which we received from the API call.
+We create a slice per feature/page, thus we need to maintain separate slices for separate stuff.

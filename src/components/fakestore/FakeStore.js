@@ -1,15 +1,17 @@
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
 import Product from "./Product";
+import { getProducts } from "@store/productSlice";
 
 function FakeStore() {
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const { data: products } = useSelector(({ products }) => products);
+
   useEffect(() => {
     try {
-      fetch('https://fakestoreapi.com/products')
-        .then(res => res.json())
-        .then(res => {
-          setProducts(res);
-        });
+      if (!products.length) {
+        dispatch(getProducts());
+      }
     } catch (error) {
       console.error(error);
     }
