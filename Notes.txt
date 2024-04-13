@@ -12,3 +12,27 @@ Why to use Redux Toolkit?
 Rule of Thumb:
 Everything should be in Routing, even the Redux Toolkit Provider must also be in RouterProvider itself.
 Router should be the root component for all the other components.
+
+Redux Toolkit Flow:
+The Store is the single source of truth for the entire App.
+Store will hold all the reducers.
+The store needs to be passed to the UI components.
+We need to dispatch an action to make a change into the store.
+The store then emits out a new state to be updated throughout the App.
+
+Slices in Redux Toolkit:
+When we create a Slice in Redux toolkit it'll create the reducer and action for us.
+In create slice, we don't need to update the state in an immutable manner like old redux, we can simply change the state in a mutable manner and `immer.js` will take care of updating it properly.
+A Slice is a collection of Reducer and Actions logic. It also has got the initialState contained in it.
+Thus we don't have to write Redux logic, creating the actions are very simplified in Redux. Very less boilerplate code, thus it's much cleaner.
+
+Store in Redux Toolkit:
+Redux provides the `configureStore` method which helps to create the store to be used in the Redux application.
+The Thunk middleware is by default present in the `configureStore` method. So, we don't need extra packages as well.
+In configureStore we add all the slices we've created for our App.
+
+Now we just need to add Redux into our App's UI. We need to add `ContainerComponents` and `Providers`.
+Now we're gonna use the `react-redux` binding for it.
+We're gonna add `Provider` to the Root Component. But it needs to be outside of the Routing.
+So, we're gonna add it to the Layout components of our App.
+Through `Provider` we add our Redux state to our App.

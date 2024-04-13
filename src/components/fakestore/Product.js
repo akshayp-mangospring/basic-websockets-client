@@ -8,7 +8,7 @@ function Product({ product: { id, title, description, image, price, category } }
         <p className="card-text">{description.substring(0, 100)}...</p>
       </div>
       <div className="card-footer bg-transparent text-center">
-        <a href="#" className="btn btn-primary">Add to Cart</a>
+        <button type="button" className="btn btn-primary">Add to Cart</button>
       </div>
     </div>
   );
