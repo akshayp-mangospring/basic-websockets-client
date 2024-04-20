@@ -1,0 +1,49 @@
+Things to learn now - Order Matters:
+React Hooks
+TypeScript - Top Priority
+NextJS
+AI Copilots
+Tailwind CSS
+
+What's CSR, SSR, SSG and ISR?
+  Build Process:
+    Source Code => Build => Server => Client
+
+  CSR - Client Side Rendering
+  CSR develops on the idea that let's just deliver every single file in the Build to the Client(Web Browser).
+  The Client will pick up the necessary files for the page and the painting process will happen on the Client itself.
+  That's the core ReactJS approach.
+  This leads to big build files delivered to the client and the site loads very slowly on the initial load.
+  The biggest drawback is that there's no SEO for ReactJS websites due to this approach.
+
+  SSR - Server Side Rendering
+  The rendering instead of happening on the Client Side happens on the Server side.
+  Here the web page will be generated on each request and sent to the client.
+  So, on every request Web page is generated and rendered on the server and is then thrown to the client.
+  It's basically generate on each request.
+  NextJS uses this. It's built on this concept itself.
+
+  SSG - Static Site Generation
+  We can make any CMS faster with SSG.
+  We're generating each page in the entire site on Build time. So, it might even involve building 100 pages at build time.
+  Then server stores the page.
+  Then that server stored page is thrown to the client on each request.
+  The disadvantage is that the build times are very long, like a C++ compilation... because it' builds the entire site in one go.
+  Gatsby does it a lot. It's useful for Blogging types of apps.
+
+  ISR - Incremental Static Regeneration
+  It's actually a mix of SSG and SSR.
+  ISR enables you to use SSG on a per page basis without needing to rebuild the entire site.
+  With ISR we can retain the benefits of SSG while scaling to a million pages...
+  NextJS uses this approach a lot.
+
+  Paramters deciding which approach you should take:
+    Build time
+    Dynamic Content
+    SEO
+    Render time
+    Content updation
+  The decision really depends on how much frequently is the data changing in our App....
+  SSR handles dynamic data really well. As the application scales SSR is a better approach.
+  SSG is useful for non changing data.
+  ISR is useful for less frequently changing data. Because it serves cached pages until new pages are built...

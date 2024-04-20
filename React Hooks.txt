@@ -1,0 +1,17 @@
+The real motto of a dev when writing ReactJS code should always be to reduce the number of rerenders.
+The new React Compiler is an Auto Memoizing Compiler.
+
+Declarative Programming v/s Imperative Programming?
+
+Hooks:
+  useState:
+  useEffect:
+  useContext:
+  useMemo:
+    When we use `useMemo`, we improvise the UX but the Developer Experience(DX) is disastrous.
+    Yet, we follow the principle, 'Optimise Responsibly! Memo all the things!'
+  useCallback:
+  useReducer:
+  Custom Hooks:
+
+React Suspense:

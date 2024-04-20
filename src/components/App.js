@@ -30,7 +30,6 @@ function App() {
         <input
           type="text"
           className="form-control rounded-end-0"
-          name="todo-list-item"
           placeholder="Add a To Do List"
           onChange={(e) => setInputValue(e.target.value)}
           value={inputValue}
